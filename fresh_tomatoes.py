@@ -3,12 +3,15 @@
 import webbrowser
 import os
 import re
+import entertainment_center
 
 
+
+# load html templates
+#######################
 with open("templates/index_head.html") as ih, open("templates/index_content.html") as ic:
     # Styles and scripting for the page
     main_page_head = ih.read()
-
 
     # The main page layout and title bar
     main_page_content = ic.read()
@@ -18,6 +21,9 @@ with open("templates/tile.html") as t:
     movie_tile_content = t.read()
 
 
+
+# populate html templates
+###########################
 def create_movie_tiles_content(movies):
     # The HTML content for this section of the page
     content = ''
@@ -38,7 +44,6 @@ def create_movie_tiles_content(movies):
         )
     return content
 
-
 def open_movies_page(movies):
     # Create or overwrite the output file
     output_file = open('fresh_tomatoes.html', 'w')
@@ -55,5 +60,10 @@ def open_movies_page(movies):
     url = os.path.abspath(output_file.name)
     webbrowser.open('file://' + url, new=2)
 
+
+
+# run module
+##############
 if __name__ == "__main__":
-    open_movies_page([])
+    movies = entertainment_center.load_movie_data("db/movies.csv")
+    open_movies_page(movies)
