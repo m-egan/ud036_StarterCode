@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import webbrowser
 import os
 import re
@@ -165,3 +167,6 @@ def open_movies_page(movies):
     # open the output file in the browser (in a new tab, if possible)
     url = os.path.abspath(output_file.name)
     webbrowser.open('file://' + url, new=2)
+
+if __name__ == "__main__":
+    open_movies_page([])
